@@ -146,13 +146,27 @@ function handleGoldClicked(event) {
 
     };
 };
+/* ----------------------------------------------- */
 
+/*  kevés arany felugró ablak */
+let message = document.querySelector(".message");
+
+function showMessage() {
+    message.innerHTML = "Nincs elég aranyad!";
+    message.style.display = "inline-block";
+    setTimeout(function () {
+        message.style.display = "none";
+    }, 2000);
+}
+
+/* ---------------------------------- */
 function handleSkillsClicked(event) {
+
     let clickIndex = event.target.dataset.index;
     if (typeof clickIndex !== "undefined") {
         let clickedSkill = skillList[clickIndex];
         if (gold < clickedSkill.price) {
-            alert("Nincs elég aranyad!");
+            showMessage();
             return;
         }
         gold -= clickedSkill.price;
@@ -161,13 +175,13 @@ function handleSkillsClicked(event) {
         render();
     }
 };
-
+console.log(alert);
 function handleEmployeeClicked(event) {
     let clickIndex = event.target.dataset.index;
     if (typeof clickIndex !== "undefined") {
         let clickedEmployee = employeeList[clickIndex];
         if (gold < clickedEmployee.price) {
-            alert("Nincs elég aranyad!");
+            showMessage();
             return;
         }
         gold -= clickedEmployee.price;
@@ -194,10 +208,11 @@ function formatPrice(price) {
 function getClickingAreaTemplate() {
     return `
 <p><strong>${seconds} másodperc</strong></p>
-<img class="gold-coin" src="/assets/gold-coin-4844191_640.png" alt="Arany klikkelő" data-enable_click="true" > 
+<img class="gold-coin" src="./assets/gold-coin-4844191_640.png" alt="Arany klikkelő" data-enable_click="true" > 
 <p><strong>${gold} arany</strong></p>
 <p>${goldPerClick} arany / klikk</p>
 <p>${goldPerSec} arany / mp</p>
+
 `};
 
 function getSkill({ skillName, goldPerClickIncrement, description, amount, price, link }, index) {
