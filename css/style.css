@@ -21,7 +21,6 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-    min-width: 510px;
     height: 100vh;
 }
 
@@ -64,13 +63,13 @@ header h1 {
 }
 
 .inventory-container {
-    min-width: 510px;
     margin: 0 40px;
     background: #00000077;
     max-width: 600px;
     border: 2px solid #ffd900aa;
     border-radius: 20px;
     padding: 3rem;
+    box-shadow: 0 0 20px rgba(255, 254, 254, .5);
 }
 
 .skills-table,
@@ -126,6 +125,7 @@ header h1 {
     border: 2px solid #ffd900;
     opacity: 0.7;
     user-select: none;
+
 }
 
 .skill-image:hover {
@@ -160,5 +160,59 @@ header h1 {
 
     .main-container> :nth-child(3) {
         justify-self: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .main-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "gold" "perclick" "persec";
+        justify-items: center;
+        grid-gap: 2rem;
+    }
+
+    .main-container> :nth-child(3) {
+        justify-self: center;
+    }
+
+    .message {
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    .inventory-container {
+        max-width: 100%;
+        margin: 10px;
+        padding: 1rem;
+    }
+
+    tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    td {
+        margin: 5px 0;
+    }
+
+    .gold-coin {
+        width: 200px;
+        height: 200px;
+    }
+
+    .upgrade-stats-cell {
+        width: 48px;
+    }
+
+    .skill-image {
+        width: 50px;
+        height: 50px;
+        border-width: 1px;
     }
 }

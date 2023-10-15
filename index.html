@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alkímia Varázslóiskola</title>
-    <link rel="icon" href="./assets/icons8-magician-64.png" type="image/png">
+    <link rel="icon" href="./assets/magician.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Alkímia Varázslóiskola</h1>
-        </header>
+        <div class="header-container">
+            <header>
+                <h1>Alkímia Varázslóiskola</h1>
+            </header>
+        </div>
         <main class="main-container">
-            <section class="inventory-container per-click js-skills-container">
+            <section class="inventory-container  js-skills-container">
                 <table class="skills-table">
                     <tbody class="js-skills-tbody">
 
@@ -23,13 +25,18 @@
                 </table>
             </section>
             <section class="clicking-area-container ">
-                <div class="js-clicking-area-container "></div>
+                <div>
+                    <div class="js-timer-area"></div>
+                    <img draggable="false" class="gold-coin js-clicking-area-container" src="./assets/gold-coin.png"
+                        alt="Arany klikkelő" data-enable_click="true">
+                    <div class="js-gold-area"></div>
+                </div>
                 <div class="message-wrapper">
                     <div class="message"></div>
                 </div>
             </section>
 
-            <section class="inventory-container inventory-container-right   per-sec js-employee-container">
+            <section class="inventory-container inventory-container-right  js-employee-container">
                 <table class="business-table">
                     <tbody class="js-business-tbody">
 
