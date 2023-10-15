@@ -172,7 +172,7 @@ function showMessage() {
     message.style.display = "inline-block";
     setTimeout(function () {
         message.style.display = "none";
-    }, 2000);
+    }, 3000);
 }
 
 /* ---------------------------------- */
