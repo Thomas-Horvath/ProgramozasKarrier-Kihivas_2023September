@@ -98,6 +98,7 @@ header h1 {
 
 /* -------------------------képességek elrejtése--------------------- */
 
+
 /* .js-skills-tbody tr:not(:first-child) {
     filter: blur(5px);
  
@@ -105,8 +106,8 @@ header h1 {
 
 .js-business-tbody tr:not(:first-child) {
     filter: blur(5px);
-}
- */
+} */
+
 /* ---------------------------------------------------- */
 .gold-coin:hover {
     transform: scale(1.1);
@@ -141,10 +142,24 @@ header h1 {
 
 }
 
+
 .skill-image:hover {
     cursor: pointer;
     opacity: 1;
 }
+
+.js-skills-tbody tr[style*="filter: blur(5px)"] .skill-image:hover {
+    cursor: none;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.js-business-tbody tr[style*="filter: blur(5px)"] .skill-image:hover {
+    cursor: none;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
 
 
 
@@ -179,13 +194,6 @@ header h1 {
 @media screen and (max-width: 600px) {
     header h1 {
         font-size: 1.5rem;
-    }
-
-    .main-container {
-        grid-template-columns: 1fr;
-        grid-template-areas: "gold" "perclick" "persec";
-        justify-items: center;
-        grid-gap: 2rem;
     }
 
     .main-container> :nth-child(3) {

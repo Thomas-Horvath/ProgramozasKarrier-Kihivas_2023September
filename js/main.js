@@ -181,6 +181,9 @@ function handleSkillsClicked(event) {
     let clickIndex = event.target.dataset.index;
     if (typeof clickIndex !== "undefined") {
         let clickedSkill = skillList[clickIndex];
+        if (event.target.closest('tr').style.filter === 'blur(5px)') {
+            return;
+        }
         if (gold < clickedSkill.price) {
             showMessage();
             return;
@@ -196,6 +199,11 @@ function handleEmployeeClicked(event) {
     let clickIndex = event.target.dataset.index;
     if (typeof clickIndex !== "undefined") {
         let clickedEmployee = employeeList[clickIndex];
+        const targetRow = event.target.closest('tr');
+        if (targetRow.style.filter === 'blur(5px)') {
+            return; // Ha van blur hatás, ne történjen semmi
+        }
+
         if (gold < clickedEmployee.price) {
             showMessage();
             return;
@@ -247,8 +255,9 @@ function getGoldAreaTemplate() {
 
 
 function getSkill({ skillName, goldPerClickIncrement, description, amount, price, link }, index) {
+    const blurStyle = index > 0 && skillList[index - 1].amount === 0 ? 'style="filter: blur(5px);"' : '';
     return `
-<tr>
+<tr ${blurStyle}>
     <td class="upgrade-text-cell">
         <p><strong>${skillName} (${goldPerClickIncrement} arany / klikk)</strong></p>
         <p>${description}</p>
@@ -265,8 +274,9 @@ function getSkill({ skillName, goldPerClickIncrement, description, amount, price
 };
 
 function getEmployee({ employeeName, goldPerSecIncrement, description, amount, price, link }, index) {
+    const blurStyle = index > 0 && employeeList[index - 1].amount === 0 ? 'style="filter: blur(5px);"' : '';
     return `
-        <tr>
+        <tr ${blurStyle}>
             <td class="upgrade-icon-cell">
                 <img draggable="false" class="skill-image" src="${link}" alt="${employeeName}" data-index = "${index}"/>
             </td>
@@ -284,7 +294,6 @@ function getEmployee({ employeeName, goldPerSecIncrement, description, amount, p
 
 
 
-
 /* ------------------------------------------- */
 
 function render(changeType = CHANGE_TYPE.ALL) {
@@ -293,10 +302,11 @@ function render(changeType = CHANGE_TYPE.ALL) {
     }
 
     if (changeType === CHANGE_TYPE.ALL || changeType === CHANGE_TYPE.SKILL) {
-        document.querySelector(".js-skills-tbody").innerHTML = skillList.map(getSkill).join("");
+        document.querySelector(".js-skills-tbody").innerHTML = skillList.map(getSkill).join("") /* getSkillsTemplate() */;
+
     }
     if (changeType === CHANGE_TYPE.ALL || changeType === CHANGE_TYPE.EMPLOYEE) {
-        document.querySelector(".js-business-tbody").innerHTML = employeeList.map(getEmployee).join("");
+        document.querySelector(".js-business-tbody").innerHTML = employeeList.map(getEmployee).join("") /* getEmployeeTamplate() */;
     }
     goldAreaNode.innerHTML = getGoldAreaTemplate();
 };
