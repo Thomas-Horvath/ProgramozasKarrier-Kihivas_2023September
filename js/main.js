@@ -141,17 +141,36 @@ function getInitialState() {
     };
 };
 
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
 
 function administrateTime() {
     let currentTimestamp = new Date().getTime();
     let elapsedTime = Math.floor((currentTimestamp - startTimestamp) / 1000);
     let rewardSecunds = elapsedTime - seconds;
+    if (seconds >= 3600) {
+
+
+        if (confirm("Az időd elfogyott! Szeretnéd újra kezdeni a játékot?")) {
+            location.reload();
+        }
+        return;
+    }
     if (rewardSecunds > 0) {
         gold += goldPerSec * rewardSecunds;
         seconds = elapsedTime;
         render(CHANGE_TYPE.TIME);
     }
+    const formattedTime = formatTime(seconds);
 };
+
+
+
+
 
 /* click event listeners */
 
@@ -229,8 +248,9 @@ function formatPrice(price) {
 };
 
 function getTimerAreaTemplate() {
+    let formattedTime = formatTime(seconds);
     return `
-<p><strong>${seconds} másodperc</strong></p>
+<p><strong>${formattedTime} másodperc</strong></p>
 
 `};
 
