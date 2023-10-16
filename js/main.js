@@ -22,8 +22,7 @@ let {
     skillList,
     employeeList,
     startTimestamp,
-    skillChanged,
-    employeeChanged,
+
 
 
 } = getInitialState();
@@ -322,11 +321,11 @@ function render(changeType = CHANGE_TYPE.ALL) {
     }
 
     if (changeType === CHANGE_TYPE.ALL || changeType === CHANGE_TYPE.SKILL) {
-        document.querySelector(".js-skills-tbody").innerHTML = skillList.map(getSkill).join("") /* getSkillsTemplate() */;
+        document.querySelector(".js-skills-tbody").innerHTML = skillList.map(getSkill).join("");
 
     }
     if (changeType === CHANGE_TYPE.ALL || changeType === CHANGE_TYPE.EMPLOYEE) {
-        document.querySelector(".js-business-tbody").innerHTML = employeeList.map(getEmployee).join("") /* getEmployeeTamplate() */;
+        document.querySelector(".js-business-tbody").innerHTML = employeeList.map(getEmployee).join("");
     }
     goldAreaNode.innerHTML = getGoldAreaTemplate();
 };
